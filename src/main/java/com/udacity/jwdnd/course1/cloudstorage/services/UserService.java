@@ -35,7 +35,7 @@ public class UserService {
         System.out.println("The firstname in Userservice  is " + user.getFirstname());
         System.out.println("The lastname in Userservice  is " + user.getLastname());
 
-        return userMapper.addUser(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstname(), user.getLastname()));
+        return userMapper.addUser(new User(null, user.getFirstname(), user.getLastname(), user.getUsername(), hashedPassword, encodedSalt));
     }
 
 
