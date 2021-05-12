@@ -27,10 +27,6 @@ public class SignUpController {
 
     @PostMapping
     public String createNewUserAccount(@ModelAttribute("user") User user, Model model){
-        System.out.println("The username is " + user.getUsername());
-        System.out.println("The password is " + user.getPassword());
-        System.out.println("The firstname is " + user.getFirstname());
-        System.out.println("The lastname is " + user.getLastname());
 
         String signUpMessage = null;
         if(userService.checkIfUsernameAlreadyExists(user.getUsername()) != null){
@@ -43,6 +39,7 @@ public class SignUpController {
                 signUpMessage = "There was an error signing you up. Please try again.";
            }
         }
+        System.out.println(signUpMessage);
         if(signUpMessage == null){
             model.addAttribute("SignUpSuccess", true);
         }
