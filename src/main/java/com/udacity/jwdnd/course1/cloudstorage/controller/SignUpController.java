@@ -39,7 +39,6 @@ public class SignUpController {
                 signUpMessage = "There was an error signing you up. Please try again.";
            }
         }
-        System.out.println(signUpMessage);
         if(signUpMessage == null){
             model.addAttribute("SignUpSuccess", true);
         }
