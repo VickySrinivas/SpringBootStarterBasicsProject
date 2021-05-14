@@ -45,6 +45,7 @@ public class NotesController {
 
     @PutMapping
     public String updateNote(Authentication authentication, @ModelAttribute("note") Notes note, Model model){
+        System.out.println("Put method is called");
         User user = this.userMapper.getUsername(authentication.getName());
         note.setUserid(user.getUserId());
         this.noteService.updateNote(note);

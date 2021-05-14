@@ -14,6 +14,7 @@ public class Notes {
         this.userid = userid;
     }
 
+
     public Integer getNoteid() {
         return noteid;
     }
@@ -35,6 +36,7 @@ public class Notes {
     }
 
     public void setNoteDescription(String noteDescription) {
+
         this.noteDescription = noteDescription;
     }
 
