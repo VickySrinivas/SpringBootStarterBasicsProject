@@ -33,4 +33,9 @@ public class NoteService {
     public int updateNote(Notes note) {
         return notesMapper.updateNote(new Notes(note.getNoteid(), note.getNoteTitle(), note.getNoteDescription(), note.getUserid()));
     }
+
+    public int deleteNote(Notes note){
+        System.out.println(note.getNoteid() + "-----------------");
+        return notesMapper.deleteNote(note.getNoteid());
+    }
 }

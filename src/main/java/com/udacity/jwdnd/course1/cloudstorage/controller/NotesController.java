@@ -36,6 +36,8 @@ public class NotesController {
 
     @PostMapping
     public String createNote(Authentication authentication, @ModelAttribute("note") Notes note, Model model){
+
+        System.out.println("POST --------------------------------");
         User user = this.userMapper.getUsername(authentication.getName());
         note.setUserid(user.getUserId());
         this.noteService.createNote(note);
@@ -49,6 +51,15 @@ public class NotesController {
         User user = this.userMapper.getUsername(authentication.getName());
         note.setUserid(user.getUserId());
         this.noteService.updateNote(note);
+        return "home";
+    }
+
+    @DeleteMapping
+    public String deleteNote(Authentication authentication, @ModelAttribute("note") Notes note, Model model){
+
+        User user = this.userMapper.getUsername(authentication.getName());
+        note.setUserid(user.getUserId());
+        this.noteService.deleteNote(note);
         return "home";
     }
 }

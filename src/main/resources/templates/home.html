@@ -81,7 +81,7 @@
                                                     th:noteDescription="${note.noteDescription}"
                                                     onclick="editShowNoteModal(this.getAttribute('noteid'), this.getAttribute('noteTitle'),
                                                     this.getAttribute('noteDescription'))">Edit</button>
-                                            <a class="btn btn-danger">Delete</a>
+                                            <a class="btn btn-danger" th:noteid="${note.noteid}" onclick="deleteNote(this.getAttribute('noteid'))">Delete</a>
                                         </td>
                                         <th th:text="${note.noteTitle}" scope="row">Example Note Title</th>
                                         <td th:text="${note.noteDescription}">Example Note Description </td>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="#" th:action="@{/notes}" th:method="PUT">
-                                            <input type="hidden" name="noteId" id="edit-note-id">
+                                            <input type="hidden" name="noteid" id="edit-note-id">
                                             <div class="form-group">
                                                 <label for="edit-note-title" class="col-form-label">Edit Title</label>
                                                 <input type="text" name= "noteTitle" class="form-control" id="edit-note-title" maxlength="20" required>
@@ -147,6 +147,30 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary" onclick="$('#edit-noteSubmit').click();">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="deleteNoteModal" tabindex="-1" role="dialog" aria-labelledby="deleteNoteModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deletenoteModalLabel">Delete Note</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" th:action="@{/notes}" th:method="DELETE">
+                                            Do you want to delete?
+                                            <input type="hidden" name="noteid" id="delete-note-id">
+                                            <button id="deleteNoteSubmit" type="submit" class="d-none"></button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="$('#deleteNoteSubmit').click();">DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -239,6 +263,12 @@
                 $('#edit-note-title').val(noteTitle ? noteTitle : '');
                 $('#edit-note-description').val(noteDescription ? noteDescription : '');
                 $('#editNoteModal').modal('show');
+            }
+
+            // For deleting the note
+            function deleteNote(noteId) {
+                $('#delete-note-id').val(noteId ? noteId : '');
+                $('#deleteNoteModal').modal('show');
             }
 
             // For opening the credentials modal
