@@ -35,7 +35,6 @@ public class NoteService {
     }
 
     public int deleteNote(Notes note){
-        System.out.println(note.getNoteid() + "-----------------");
         return notesMapper.deleteNote(note.getNoteid());
     }
 }
